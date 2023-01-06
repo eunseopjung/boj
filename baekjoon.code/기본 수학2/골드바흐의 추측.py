@@ -40,8 +40,8 @@ def isPrime(num):
 
 
 for T in range(int(input())):
-    num = int(input())
-    a, b = num//2, num//2
+    n = int(input())
+    a, b = n//2, n//2
     while a > 0:
         if isPrime(a) and isPrime(b):
             print(a, b)
