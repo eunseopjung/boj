@@ -1,39 +1,31 @@
 import sys
 input = sys.stdin.readline
 
-stack = []
-
-
-def push(x):
-    global stack
-    stack.append(x)
-    return
-
-
-def pop():
-    global stack
-    if len(stack):
-        stack.pop()
-    return
-
-
 while True:
     vs = input().rstrip()
+    stack = []
+    flag = 0
     if vs == '.':
         break
-    for i in range(len(vs)):
-        if vs[i] in '()[]':
-            push(vs[i])
-            if len(stack) >= 2:
-                if stack[-1] == ')' and stack[-2] == '(':
-                    pop()
-                    pop()
-                    continue
-                if stack[-1] == ']' and stack[-2] == '[':
-                    pop()
-                    pop()
-    if len(stack):
-        print('NO')
-    else:
-        print('YES')
-    stack.clear()
+    for i in vs:
+        if i == "(" or i == "[":
+            stack.append(i)
+        elif i == ")":
+            if not stack or stack[-1] == "[":
+                print("no")
+                flag = 1
+                break
+            else:
+                stack.pop()
+        elif i == "]":
+            if not stack or stack[-1] == "(":
+                print("no")
+                flag = 1
+                break
+            else:
+                stack.pop()
+    if flag == 0:
+        if not stack:
+            print("yes")
+        else:
+            print("no")
