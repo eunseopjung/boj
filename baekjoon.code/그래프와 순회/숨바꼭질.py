@@ -3,7 +3,6 @@ from collections import deque
 input = sys.stdin.readline
 
 
-
 def bfs(n, k):
     if n == k:
         return 0
